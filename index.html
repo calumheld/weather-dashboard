@@ -5,31 +5,47 @@
   <meta charset="utf-8">
   <title>Weather Data</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
-    <div class="city"></div>
-    <div class="wind"></div>
-    <div class="humidity"></div>
-    <div class="temp"></div>
-    <div class="tempF"></div>
-    <div class="uvi"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+            <input id="searchbar" placeholder="Search by city"><button id="search">ech</button></input>
+            <div class="row" id="btnrow"></div>
+        </div>
+        <div class="col-lg-8">
+            <div class="city"></div>
+            <div class="wind"></div>
+            <div class="humidity"></div>
+            <div class="temp"></div>
+            <div class="tempF"></div>
+            <div class="uvi"></div>
+        </div>
+        </div>
+        
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
     // var lon=35.69;
     // var lat=139.69;
     // var uvQuery=" http://api.openweathermap.org/data/2.5/uvi?appid="+APIKey+"&lat="+lat+"&lon="+lon;
-    var city="tokyo";
+    var city1="tokyo";
     var APIKey = "166a433c57516f51dfab1f7edaed8413";
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
-    "q="+city+"&appid=" + APIKey;
-
+    // var queryURL = "https://api.openweathermap.org/data/2.5/weather?"+"q="+cit+"&appid=" + APIKey;
+    function weathercall(city){
+        var cit=city;
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?"+"q="+cit+"&appid="+APIKey;
         $.ajax({
         url: queryURL,
         method: "GET"
         })
         .then(function(response) {
+            
             console.log(queryURL);
             console.log(response);
             $(".city").html("<h1>" + response.name + " Weather Details</h1>");
@@ -52,7 +68,22 @@
             //     var uv=response.value;
             //     $(".uvi").text("UV index:"+uv);
             // });
+    }
+    weathercall(city1);
+        $(".weatherbutton").on("click",function(){
+        alert($("hello"));
+    });
+    $("#search").on("click",function(){
+        if(searchbar.value){
+        var newbtn=$("<button>");
+        newbtn.addClass("weatherbutton");
+        newbtn.text(searchbar.value);
+        $("#btnrow").append(newbtn);
+        weathercall(searchbar.value);
         
+        }
+    });
+
     </script>
 </body>
 

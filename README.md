@@ -1,1 +1,2 @@
 # weather-dashboard
+had just the worst time trying to figure out how to get the UV query to work. it did but then it didnt. Im having a hart time telling what i did wrong or if i just cant make that query anymore today. Getting the dynamically generated buttons working is giving me trouble too, but i am able to get the search to return what i want. besides the UV that is.
